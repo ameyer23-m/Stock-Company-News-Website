@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Documentation",
+      "setup": "sudo -H pip3 install pymarkdownlnt",
+      "run": "pymarkdown --disable-rules \"md024,md013\" scan readme.md",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    }
+  ]
+}
