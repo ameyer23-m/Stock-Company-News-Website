@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>Invest Insight</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/home-style.css') }}">
+    </head>
+    <body>
+        <div class="header">
+            <label for="companies">Select a company:</label>
+            <select name="companies" id="companies">
+                {% for abbrev in company_db.get_all_companies_abbrev() %}
+                <option value="{{ abbrev }}">{{ abbrev }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- Jinja templating code that we can redefine for other pages -->
+        {% block body %}{% endblock %}
+    </body>
+</html>
