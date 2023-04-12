@@ -36,40 +36,42 @@ def init_db(config):
             stock_abbrev VARCHAR(5),
             industry VARCHAR(30),
             ceo VARCHAR(40),
-            founded_date timestamp,
+            founded_date TIMESTAMP,
             founded_location VARCHAR(50),
-            CONSTRAINT pk_companies PRIMARY KEY (id),
+            CONSTRAINT pk_companies PRIMARY KEY (id)
+        );
+
+        CREATE TABLE news
+        (
+            id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+            company_id INT UNSIGNED,
+            article VARCHAR(200),
+            date TIMESTAMP,
+            publisher VARCHAR(50),
+            writer VARCHAR(40),
+            CONSTRAINT pk_news PRIMARY KEY (id),
+            CONSTRAINT fk_companies_news FOREIGN KEY (company_id) REFERENCES companies(id)           
+        );
+
+        CREATE TABLE users
+        (
+            id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+            password VARCHAR(255),
+            username VARCHAR(30),
+            email VARCHAR(30),
+            CONSTRAINT pk_users PRIMARY KEY (id)
+        );
+
+        CREATE TABLE favorites
+        (
+            id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+            pk_companies INT UNSIGNED NOT NULL,
+            user_id INT UNSIGNED,
+            CONSTRAINT pk_favorites PRIMARY KEY (id),
+            CONSTRAINT fk_companies_favorites FOREIGN KEY (pk_companies) REFERENCES companies(id),
+            CONSTRAINT fk_users_favorites FOREIGN KEY (user_id) REFERENCES users(id)        
         );
         """
     )
-
-    # cursor.execute(
-    #     f""" 
-    #     CREATE TABLE favorites
-    #     (
-    #         id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-    #         pk_companies INT UNSIGNED NOT NULL
-    #         stock_abbrev VARCHAR(5)
-    #         CONSTRAINT pk_favorites PRIMARY KEY (id)
-    #         CONSTRAINT fk_companies FOREIGN KEY (pk_companies) REFERENCES Company(id)           
-    #     );
-    #     """
-    # )
-
-    # cursor.execute(
-    #     f""" 
-    #     CREATE TABLE news
-    #     (
-    #         id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-    #         company VARCHAR(40),
-    #         article VARCHAR(200),
-    #         date timestamp,
-    #         publisher VARCHAR(50),
-    #         writer VARCHAR(40),
-    #         CONSTRAINT pk_favorites PRIMARY KEY (id)
-    #         CONSTRAINT fk_companies FOREIGN KEY (pk_companies) REFERENCES Users(company)           
-    #     );
-    #     """
-    # )
     cursor.close()
     conn.close()

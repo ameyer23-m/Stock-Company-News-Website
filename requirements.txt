@@ -2,3 +2,5 @@ flask
 pytest
 mysql-connector-python
 python-dotenv
+flask-wtf
+email-validator
