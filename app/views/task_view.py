@@ -5,6 +5,9 @@ from models.companies_modifier import Company, CompanyDB
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
 
+
+from models.users_modifier import User, UserDB
+
 task_list_blueprint = Blueprint('task_list_blueprint', __name__)
 
 news = [
@@ -78,19 +81,40 @@ def inject_companies():
 @task_list_blueprint.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    user_db = UserDB(g.mysql_db, g.mysql_cursor)
+    user = User(username=form.username.data, email=form.email.data, password=form.password.data)
+    users_username =form.username.data
+    users_password = form.password.data
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
+        if user_db.validate_user(users_username, users_password):
+            flash(f'Username taken!', 'danger')
+            return redirect(url_for('task_list_blueprint.register'))
+        else:
+            user_db.add_user(user)
+            flash(f'Account created for {form.username.data}!', 'success')
+            return redirect(url_for('task_list_blueprint.home'))
     return render_template('register.html', title='Register', form=form)
+
+
+@task_list_blueprint.route("/favorites", methods=["GET", "POST"])
+def favorites():
+    favorites_db = FavoritesDB(g.mysql_db, g.mysql_cursor)
+    favorites = request.form.get("collection")
+    favorites_db.get_collection(favorites)
+    return render_template("favorites.html")
 
 
 @task_list_blueprint.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    user_db = UserDB(g.mysql_db, g.mysql_cursor)
+    user = User(username=form.username.data, password=form.password.data)
+    users_username =form.username.data
+    users_password = form.password.data
     if form.validate_on_submit():
-        if form.email.data == 'admin@investinsights.com' and form.password.data == 'password':
-            flash('You have been logged in!', 'success')
-            return redirect(url_for('home'))
+        if user_db.validate_user(users_username, users_password):
+            flash(f'You have been logged in {form.username.data}!', 'success')
+            return redirect(url_for('task_list_blueprint.home'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)

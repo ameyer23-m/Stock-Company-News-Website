@@ -8,10 +8,11 @@ class Favorite:
         CREATE TABLE favorites
         (
             id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-            pk_companies INT UNSIGNED NOT NULL
-            stock_abbrev VARCHAR(5)
-            CONSTRAINT pk_favorites PRIMARY KEY (id)
-            CONSTRAINT fk_companies FOREIGN KEY (pk_companies) REFERENCES Users(stock_abbrev)           
+            pk_companies INT UNSIGNED NOT NULL,
+            user_id INT UNSIGNED,
+            CONSTRAINT pk_favorites PRIMARY KEY (id),
+            CONSTRAINT fk_companies_favorites FOREIGN KEY (pk_companies) REFERENCES companies(id),
+            CONSTRAINT fk_users_favorites FOREIGN KEY (user_id) REFERENCES users(id)           
         );
     """
 
@@ -32,10 +33,50 @@ class Favorite:
     def id(self):
         return self._id
 
-class favoritesDB:
+class FavoritesDB:
     """
     This class provides an interface for interacting with a database of artwork.
     """
     def __init__(self, db_conn, db_cursor):
         self._conn = db_conn
         self._cursor = db_cursor
+
+    def add_favorites(self, user_id):
+        """
+        Add a new company to the favorites list for a specified user
+
+        :param user
+        """
+        insert_fav_query = '''
+            INSERT INTO favorites (user_id, pk_companies)
+            VALURES (%s, %s);
+        '''
+
+        self._cursor.execute(insert_fav_query, (user_id, Company.Company_id))
+        self._conn.commit()
+        print(self._cursor.rowcount, "record(s) affected")
+
+        self._cursor.execute("SELECT LAST_INSERT_ID() id")
+        new_user_id = self._cursor.fetchone()
+        # self._cursor.close()
+        return new_user_id
+
+
+
+    def delete_artwork(self, id):
+        """
+        Remove a artwork record from the database
+        
+        :param id: id of the artwork to be removed from the database
+        """
+        query = 'DELETE FROM favorites WHERE id=%s;'
+
+
+        self._cursor.execute(query, (id,))
+        self._conn.commit()
+        
+        print(self._cursor.rowcount, "record(s) affected")
+        # self._cursor.close()
+
+    def disconnect(self):
+        self._conn.close()
