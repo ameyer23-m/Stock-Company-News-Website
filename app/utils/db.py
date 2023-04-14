@@ -4,6 +4,7 @@ Collection of functions to help establish the database
 import mysql.connector
 import csv
 
+from models.companies_modifier import Company, CompanyDB
 
 # Connect to MySQL and the task database
 def connect_db(config):
@@ -133,11 +134,13 @@ def populate_news(conn, cursor, csvfile):
             cursor.execute(sql_companies_find, (row['company'],))
             company = cursor.fetchone()
             print(company)
-            
+            if CompanyDB.company_check:
+                continue
+            else:
             # if not company_id:
             #     continue
             # company_id = 1
-            cursor.execute(sql_news_insert, (company["id"], ))
+                cursor.execute(sql_news_insert, (company["id"], ))
 
     
     
