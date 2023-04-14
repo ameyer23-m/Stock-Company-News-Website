@@ -77,6 +77,11 @@ def disconnect_db():
 @app.cli.command('initdb')
 def initdb_cli_command():
     DBUtils.init_db(app.config)
+    
+
+@app.cli.command('seeddb')
+def seeddb_cli_command():
+    DBUtils.seed_db(app.config)
 
 
 # Function called before all requests to the webservice
