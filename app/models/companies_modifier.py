@@ -124,19 +124,19 @@ class CompanyDB:
         print(self._cursor.rowcount, "record(s) affected")
         # self._cursor.close()
 
-    def company_check(self, company):
-        company = self.get_company(company)
-        if not company:
-            return False
-        else:
-            return True
+    # def company_check(self, company):
+    #     company = self.get_company(company)
+    #     if not company:
+    #         return False
+    #     else:
+    #         return True
         
-    def company_user(self, company,stock_abbrev,industry,ceo,founded_date,founded_location):
-        company_id = self.get_id(company, stock_abbrev, industry, ceo, founded_date, founded_location)
-        if company_id:
-            return True
-        else:
-            return False
+    # def company_user(self, company,stock_abbrev,industry,ceo,founded_date,founded_location):
+    #     company_id = self.get_id(company, stock_abbrev, industry, ceo, founded_date, founded_location)
+    #     if company_id:
+    #         return True
+    #     else:
+    #         return False
 
     def disconnect(self):
         self._conn.close()

@@ -134,13 +134,13 @@ def populate_news(conn, cursor, csvfile):
             cursor.execute(sql_companies_find, (row['company'],))
             company = cursor.fetchone()
             print(company)
-            if CompanyDB.company_check:
-                continue
-            else:
-            # if not company_id:
+            # if CompanyDB.company_check:
             #     continue
-            # company_id = 1
-                cursor.execute(sql_news_insert, (company["id"], ))
+            # else:
+            # # if not company_id:
+            # #     continue
+            # # company_id = 1
+            cursor.execute(sql_news_insert, (company["id"], ))
 
     
     
