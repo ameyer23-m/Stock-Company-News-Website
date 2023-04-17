@@ -1,9 +1,22 @@
 {% extends "layout.html" %}
 
+{% block title %}
+    <div class="content-section">
+        <h1>{{ company_name }}</h1>
+        <div>
+            <div style="display: block;"><a>Stock: {{ company }}</a></div>
+            <div style="display: block;"><a>CEO: {{ company_ceo }}</a></div>
+            <div style="display: block;"><a>Founded Date: {{ company_founded_date }}</a></div>
+            <div style="display: block;"><a>Founded Location: {{ company_founded_location }}</a></div>
+            <div style="display: block;"><a>Industry: {{ company_industry }}</a></div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
     <!-- {% include 'navbar.html' %} -->
-    <h1>{{ company }}</h1>
-    <p>Here is the news for {{ company }}!</p>
+    <h1>{{ company_name }} ({{ company }})</h1>
+    <p>Here is the news for {{ company_name }}!</p>
     {% for news in news %}
         {% if news['company'] == company %}
             <article class="media content-section">
