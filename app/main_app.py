@@ -18,6 +18,7 @@ import uuid
 # Imports all 3rd-party libraries
 from flask import Flask, g
 from dotenv import load_dotenv
+from flask_login import LoginManager
 
 # Imports for blueprints and other modules written for the application
 from views.task_view import task_list_blueprint
@@ -77,7 +78,7 @@ def disconnect_db():
 @app.cli.command('initdb')
 def initdb_cli_command():
     DBUtils.init_db(app.config)
-    
+
 
 @app.cli.command('seeddb')
 def seeddb_cli_command():

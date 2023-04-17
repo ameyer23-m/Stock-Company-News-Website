@@ -85,15 +85,22 @@ def register():
     user = User(username=form.username.data, email=form.email.data, password=form.password.data)
     users_username =form.username.data
     users_password = form.password.data
+    users_email = form.email.data
+
     if form.validate_on_submit():
         if user_db.validate_user(users_username, users_password):
-            flash(f'Username taken!', 'danger')
-            return redirect(url_for('task_list_blueprint.register'))
+            if user_db.validate_email(users_email):
+                flash('Login Unsuccessful. Email has already been taken', 'danger')
+                return redirect(url_for('task_list_blueprint.register'))
+            else:
+                flash('Login Unsuccessful. Username taken!', 'danger')
+                return redirect(url_for('task_list_blueprint.register'))
         else:
             user_db.add_user(user)
             flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('task_list_blueprint.home'))
     return render_template('register.html', title='Register', form=form)
+
 
 
 @task_list_blueprint.route("/favorites", methods=["GET", "POST"])
@@ -111,10 +118,11 @@ def login():
     user = User(username=form.username.data, password=form.password.data)
     users_username =form.username.data
     users_password = form.password.data
+
     if form.validate_on_submit():
         if user_db.validate_user(users_username, users_password):
             flash(f'You have been logged in {form.username.data}!', 'success')
-            return redirect(url_for('task_list_blueprint.home'))
+            return redirect(url_for('task_list_blueprint.home'))   
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)

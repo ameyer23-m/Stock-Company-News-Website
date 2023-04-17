@@ -13,7 +13,7 @@ class User:
             CONSTRAINT pk_users PRIMARY KEY (id)
         );
     """
-    def __init__(self, password, username, email=None, id=None):
+    def __init__(self, password, username, email, id=None):
         self._password = password
         self._username = username
         self._email = email
@@ -51,6 +51,12 @@ class UserDB:
         self._cursor.execute(query_username, (user_name,))
         username_record = self._cursor.fetchone()
         return username_record
+
+    def get_email(self, email):
+        query_email = 'SELECT * FROM users WHERE email=%s;'
+        self._cursor.execute(query_email, (email,))
+        email_record = self._cursor.fetchone()
+        return email_record
 
     def get_usernames_id(self, username):
         query_id = 'SELECT * FROM users WHERE username=%s;'
@@ -147,6 +153,13 @@ class UserDB:
     def validate_user(self, user_name, given_password): # ----------------------------- used
         persons_id = self.get_id(user_name, given_password)
         if persons_id:
+            return True
+        else:
+            return False
+
+    def validate_email(self, email):
+        person = self.get_email(email)
+        if person:
             return True
         else:
             return False
