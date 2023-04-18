@@ -126,7 +126,7 @@ def favorites():
 def login():
     form = LoginForm()
     user_db = UserDB(g.mysql_db, g.mysql_cursor)
-    user = User(username=form.username.data, password=form.password.data)
+    user = User(username=form.username.data, password=form.password.data, email = form.password.data)
     users_username =form.username.data
     users_password = form.password.data
 

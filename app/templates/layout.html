@@ -20,6 +20,7 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
+          <img src="{{ url_for('static', filename='img/InvestInsights.png') }}" width="50" height="50" a href="/" class="logo"></a>
           <a class="navbar-brand mr-4" href="/">Invest Insights</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,9 +55,9 @@
         </div>
           <div class="col-md-4">
             <div class="content-section">
-              Select Stock Symbol:
-              <select id="company-select" onchange="location = this.value;">
-                <option value="" selected hidden>select here</option>
+              Select Stock Symbol: 
+              <select class="select" id="company-select" onchange="location = this.value;">
+                <option value="" selected hidden>Select Here</option>
                 {% for company in companies %}
                 <option value="/{{ company }}">{{ company }}</option>
                 {% endfor %}

@@ -1,23 +1,23 @@
 body {
-    background: #fafafa;
-    color: #333333;
+    background: #1e1e1e; /*background color */
+    color: #ffffff; /* text */
     margin-top: 5rem;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    color: #444444;
+    color: #ffffff;  /* text */
   }
   
   .bg-steel {
-    background-color: #5f788a; 
+    background-color: #000000;  /* Header color */
   }
   
   .site-header .navbar-nav .nav-link {
-    color: #cbd5db;
+    color: #cbd5db; /* Home about login register text*/
   }
   
   .site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
+    color: #ffffff;  /* Not sure */
   }
   
   .site-header .navbar-nav .nav-link.active {
@@ -25,7 +25,7 @@ body {
   }
   
   .content-section {
-    background: #ffffff;
+    background: #000000; 
     padding: 10px 20px;
     border: 1px solid #dddddd;
     border-radius: 3px;
@@ -33,11 +33,11 @@ body {
   }
   
   .article-title {
-    color: #444444;
+    color: #ffffff;
   }
   
   a.article-title:hover {
-    color: #428bca;
+    color: #ffffff;
     text-decoration: none;
   }
   
@@ -54,11 +54,11 @@ body {
   .article-metadata {
     padding-bottom: 1px;
     margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
+    border-bottom: 1px solid #ffffff
   }
   
   .article-metadata a:hover {
-    color: #333;
+    color: #e0e0e0;
     text-decoration: none;
   }
   
@@ -77,4 +77,38 @@ body {
   
   .account-heading {
     font-size: 2.5rem;
+  }
+
+  .writer{
+    color: #e0e0e0;
+  }
+
+  /* For the dropdown list */
+  .select{
+    /* padding: 8px 12px; */
+    color:#ffffff;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  .select a:hover {
+    color: #aeaeae;
+    text-decoration: none;
+  }
+
+  .to_other_page{
+    color: #f4f4f4
+  }
+
+  .signup_login{
+    color:#ffffff;
+    background-color: #1e1e1e;
+    border-color: #ffffff;
   }

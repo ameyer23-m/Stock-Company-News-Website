@@ -60,13 +60,14 @@
                 </div>
             </fieldset>
             <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
+                <!-- {{ form.submit(class="btn btn-outline-info") }} -->
+                <input class="signup_login" id="submit" name="submit" type="submit" value="Sign Up">
             </div>
         </form>
     </div>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('task_list_blueprint.login') }}">Sign In</a>
+            Already Have An Account? <a class="to_other_page" href="{{ url_for('task_list_blueprint.login') }}">Sign In</a>
         </small>
     </div>
 {% endblock content %}

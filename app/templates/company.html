@@ -16,13 +16,13 @@
 {% block content %}
     <!-- {% include 'navbar.html' %} -->
     <h1>{{ company_name }} ({{ company }})</h1>
-    <p>Here is the news for {{ company_name }}!</p>
+    <p>{{ company_name }} News</p>
     {% for news in news %}
         {% if news['company'] == company %}
             <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                <a class="mr-2" href="#">{{ news.writer }}</a>
+                <a class="writer" href="#">{{ news.writer }}</a>
                 <small class="text-muted">{{ news.date }}</small>
                 </div>
                 <h2><a class="article-title" href="#">{{ news.article }}</a></h2>
