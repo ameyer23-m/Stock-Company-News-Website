@@ -32,8 +32,13 @@
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.register') }}">Register</a>
+                {% if IS_LOGGED_IN == False %}
+                  <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.login') }}">Login</a>
+                  <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.register') }}">Register</a>
+                {% endif%}
+                {% if IS_LOGGED_IN == True %}
+                  <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.profile') }}">Profile</a>
+                {% endif %}
             </div>
           </div>
         </div>
@@ -53,18 +58,8 @@
         {% endwith %}
         {% block content %}{% endblock %}
         </div>
-          <div class="col-md-4">
-            <div class="content-section">
-              Select Stock Symbol: 
-              <select class="select" id="company-select" onchange="location = this.value;">
-                <option value="" selected hidden>Select Here</option>
-                {% for company in companies %}
-                <option value="/{{ company }}">{{ company }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            {% block title %}{% endblock %}
-          </div>
+          {% block dropdown %}{% endblock %}
+          {% block title %}{% endblock %}
         </div>
       </div>
     </main>

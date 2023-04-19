@@ -1,5 +1,18 @@
 {% extends "layout.html" %}
 
+{% block dropdown %}
+<div class="col-md-4">
+  <div class="dropdown-section {% if hide_dropdown %}hidden{% endif %}">
+    Select Stock Symbol:
+    <select class="select" id="company-select" onchange="location = this.value;">
+        <option value="" selected hidden>Select Here</option>
+        {% for company in companies %}
+        <option value="/{{ company }}">{{ company }}</option>
+        {% endfor %}
+    </select>
+</div>
+{% endblock dropdown %}
+
 {% block title %}
     <div class="content-section">
         <h1>{{ company_name }}</h1>
@@ -16,7 +29,7 @@
 {% block content %}
     <!-- {% include 'navbar.html' %} -->
     <h1>{{ company_name }} ({{ company }})</h1>
-    <p>{{ company_name }} News</p>
+    <p>Recent News</p>
     {% for news in news %}
         {% if news['company'] == company %}
             <article class="media content-section">

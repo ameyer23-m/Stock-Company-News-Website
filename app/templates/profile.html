@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}"> -->
+    </head>
+
+    <h1 style="font-family:sans-serif;padding-left:50px; text-align:center">
+        {{name}}
+    </h1>
+
+    <body class="content-section">
+        <form action="/manage-profile" method="post">
+            <div class="container">
+                <button type="submit">Manage account?</button>
+            </div>
+        </form>
+        <h3>Email: {{ email }}</h3>
+        <h3>Favorites</h3>
+    </body>
+
+    <hr {width: 300px;margin-left: auto;margin-right: auto;height: 100px;background-color:#666;opcaity: 0.5;}>
+    
+</html>    
+
+{% endblock content %}

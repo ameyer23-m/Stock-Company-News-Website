@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect
-from flask import render_template, g, Blueprint
+from flask import render_template, g, Blueprint, redirect, make_response
 # from models.task import Task, TaskDB
 # from models.companies_modifier import Company, CompanyDB
 from flask import Flask, render_template, url_for, flash, redirect
@@ -11,10 +11,12 @@ from models.companies_modifier import Company, CompanyDB
 
 task_list_blueprint = Blueprint('task_list_blueprint', __name__)
 
+IS_LOGGED_IN = False;
+
 news = [
     {
         'company': 'APX',
-        'article': 'Article 1 on APX',
+        'article': 'Article 1 on APX with a super long title that I dont like',
         'date': '2022-01-03',
         'publisher': 'NY Times',
         'writer': 'Joe Biden'
@@ -62,9 +64,10 @@ news = sorted(news, key=lambda k: k['date'], reverse=True)
 @task_list_blueprint.route("/")
 @task_list_blueprint.route("/home")
 def home():
+    global IS_LOGGED_IN
     company_db = CompanyDB(g.mysql_db, g.mysql_cursor)
     companies = company_db.get_all_companies_abbrev()
-    return render_template('home.html', news = news, companies = companies)
+    return render_template('home.html', news = news, companies = companies, IS_LOGGED_IN=IS_LOGGED_IN)
   
 
 @task_list_blueprint.route("/about")
@@ -85,10 +88,6 @@ def company(company):
                         companies=companies, company_name=company_name, company_ceo = company_ceo,
                         company_founded_date=company_founded_date, company_founded_location=company_founded_location, company_industry=company_industry)
 
-
-# @task_list_blueprint.context_processor
-# def inject_companies():
-#     return dict(companies=companies)
 
 
 @task_list_blueprint.route("/register", methods=['GET', 'POST'])
@@ -124,6 +123,7 @@ def favorites():
 
 @task_list_blueprint.route("/login", methods=['GET', 'POST'])
 def login():
+    global IS_LOGGED_IN
     form = LoginForm()
     user_db = UserDB(g.mysql_db, g.mysql_cursor)
     user = User(username=form.username.data, password=form.password.data, email = form.password.data)
@@ -133,7 +133,20 @@ def login():
     if form.validate_on_submit():
         if user_db.validate_user(users_username, users_password):
             flash(f'You have been logged in {form.username.data}!', 'success')
-            return redirect(url_for('task_list_blueprint.home'))   
+            IS_LOGGED_IN = True
+            response = make_response(redirect('/home'))
+            response.set_cookie('userID', users_username)
+            return response
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+@task_list_blueprint.route("/profile", methods=["GET"])
+def profile():
+    user_db = UserDB(g.mysql_db, g.mysql_cursor)
+    name = request.cookies.get('userID')
+    user_id = user_db.get_usernames_id(name)
+    email = user_db.get_usernames_email(name)
+    if (user_id['username'] == name):
+        return render_template("profile.html", name=name, email=email)
+

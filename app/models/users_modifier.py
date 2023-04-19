@@ -77,6 +77,18 @@ class UserDB:
         password_record = self._cursor.fetchone()
         return password_record
 
+    def get_usernames_id(self, username):
+        query_id = 'SELECT * FROM Users WHERE username=%s;'
+        self._cursor.execute(query_id, (username,))
+        id_record = self._cursor.fetchone()
+        return id_record
+
+    def get_usernames_email(self, username):
+        query_id = 'SELECT email FROM Users WHERE username=%s;'
+        self._cursor.execute(query_id, (username,))
+        id_record = self._cursor.fetchone()
+        return id_record['email']
+
     ## Update
     def update_password(self, id, new_password):
         update_query = """

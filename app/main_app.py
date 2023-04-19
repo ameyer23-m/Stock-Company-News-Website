@@ -50,6 +50,7 @@ app.config["SECRET_KEY"] = uuid.uuid4().hex
 # Setup Views
 app.register_blueprint(task_list_blueprint)
 app.register_blueprint(task_api_blueprint)
+# login_manager = LoginManager(app)
 
 
 # Helper function to establish a connection to the database
