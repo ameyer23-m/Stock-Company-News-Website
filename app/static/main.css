@@ -128,3 +128,54 @@ body {
   .body[data-page='about'] .dropdown-section select {
       display: none;
   }
+
+  /* Style the select dropdown */
+.select-fav {
+  color: #cbd5db; /* Favorites*/
+  padding-right: 10px;
+  background: #000000; 
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+/* Style the options in the dropdown */
+.select-fav option {
+  background: #000000;
+  color: #cbd5db;
+  border: none;
+}
+
+/* Style the hover effect */
+.select-fav:hover {
+  color: #ffffff;
+}
+
+/* Style the selected option */
+.select-fav option:checked {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+/* Style the dropdown when it is open */
+.select-fav:active, .select-fav:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Style the dropdown when it is active */
+.select-fav:active {
+  background-color: #222222;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add_fav {
+  margin-left: auto;
+}

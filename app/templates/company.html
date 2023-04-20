@@ -19,7 +19,9 @@
         <div>
             <div style="display: block;"><a>Stock: {{ company }}</a></div>
             <div style="display: block;"><a>CEO: {{ company_ceo }}</a></div>
-            <div style="display: block;"><a>Founded Date: {{ company_founded_date.strftime('%B %d, %Y') }}</a></div>
+            {% if company_founded_date %}
+                <div style="display: block;"><a>Founded Date: {{ company_founded_date.strftime('%B %d, %Y') }}</a></div>
+            {% endif %}
             <div style="display: block;"><a>Founded Location: {{ company_founded_location }}</a></div>
             <div style="display: block;"><a>Industry: {{ company_industry }}</a></div>
         </div>
@@ -28,7 +30,14 @@
 
 {% block content %}
     <!-- {% include 'navbar.html' %} -->
-    <h1>{{ company_name }} ({{ company }})</h1>
+    <div class="flex-container">
+        <h1 class="company_name">{{ company_name }} ({{ company }})</h1>
+        {% if IS_LOGGED_IN == True %}
+        <div class="add_fav">
+            <button type="submit">+</button>
+        </div>
+        {% endif%}
+    </div>
     <p>Recent News</p>
     {% for news in news %}
         <article class="media content-section">

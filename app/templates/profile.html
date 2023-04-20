@@ -1,4 +1,13 @@
 {% extends "layout.html" %}
+
+{% block dropdown %}
+<div class="col-md-4">
+    <div class="container">
+        <button type="submit">Sign Out</button>
+    </div>
+</div>
+{% endblock dropdown %}
+
 {% block content %}
     <div class="content-section">
         <div class="article-metadata">
@@ -16,9 +25,6 @@
                 <button type="submit">Manage account?</button>
             </div>
         </form>
-    
     </div>
-
-    
-
 {% endblock content %}
+
