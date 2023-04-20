@@ -19,7 +19,7 @@
         <div>
             <div style="display: block;"><a>Stock: {{ company }}</a></div>
             <div style="display: block;"><a>CEO: {{ company_ceo }}</a></div>
-            <div style="display: block;"><a>Founded Date: {{ company_founded_date }}</a></div>
+            <div style="display: block;"><a>Founded Date: {{ company_founded_date.strftime('%B %d, %Y') }}</a></div>
             <div style="display: block;"><a>Founded Location: {{ company_founded_location }}</a></div>
             <div style="display: block;"><a>Industry: {{ company_industry }}</a></div>
         </div>
@@ -31,18 +31,16 @@
     <h1>{{ company_name }} ({{ company }})</h1>
     <p>Recent News</p>
     {% for news in news %}
-        {% if news['company'] == company %}
-            <article class="media content-section">
-            <div class="media-body">
-                <div class="article-metadata">
-                <a class="writer" href="#">{{ news.writer }}</a>
-                <small class="text-muted">{{ news.date }}</small>
-                </div>
-                <h2><a class="article-title" href="#">{{ news.article }}</a></h2>
-                <p class="article-content">{{ news.publisher }}</p>
+        <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+            <a class="writer" href="#">{{ news.writer }}</a>
+            <small class="text-muted">{{ news.date.strftime('%B %d, %Y') }}</small>
             </div>
-            </article>
-        {% endif %}
+            <h2><a class="article-title" href="#">{{ news.article }}</a></h2>
+            <p class="article-content">{{ news.publisher }}</p>
+        </div>
+        </article>
     {% endfor %}
 {% endblock %}
 

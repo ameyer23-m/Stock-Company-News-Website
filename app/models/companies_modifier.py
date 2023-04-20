@@ -56,7 +56,7 @@ class Company:
 
 class CompanyDB:
     """
-    This class provides an interface for interacting with a database of Users.
+    This class provides an interface for interacting with a database of Comapnies.
     """
     def __init__(self, db_conn, db_cursor):
         self._conn = db_conn

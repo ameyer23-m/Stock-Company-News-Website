@@ -7,7 +7,7 @@ class Task:
         self._creation_datetime = datetime.now()
         self._completed = 0
     
-    
+
     @property
     def description(self):
         return self._description
