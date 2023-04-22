@@ -91,29 +91,22 @@ class UserDB:
         return record['email'] if record else None
 
     ## Update
-    def update_password(self, new_password, id):
+    def update_user(self, new_password, new_email, new_username, username):
         update_query = """
             UPDATE users
-            SET password=%s
-            WHERE id=%s;
+            SET password=%s, email=%s, username=%s
+            WHERE username=%s;
         """
-        self._cursor.execute(update_query, (new_password, id))
-        self._conn.commit()
-        self._cursor.execute("SELECT LAST_INSERT_ID() id")
-        user_id = self._cursor.fetchone()
-
-
-    def update_email(self, id, new_email):
-        update_query = """
-            UPDATE users
-            SET email=%s
-            WHERE id=%s;
-        """
-        self._cursor.execute(update_query, (new_email, id))
+        self._cursor.execute(update_query, (new_password, new_email, new_username, username))
         self._conn.commit()
         self._cursor.execute("SELECT LAST_INSERT_ID() id")
         user_id = self._cursor.fetchone()
         return user_id
+
+
+
+
+
 
     ## Add
     def add_user(self, accounts):  #------------------------------ used
@@ -139,30 +132,6 @@ class UserDB:
             return id_record.get('id')
         else:
             return None
-
-    ## Deleting 
-    # def delete_user(self, id):
-    #     """
-    #     Remove a user record from the database
-    #     """
-    #     query = 'DELETE FROM users WHERE id=%s;'
-    #     query1 = 'DELETE FROM artwork WHERE id=%s'
-    #     query2 = 'DELETE FROM CollectionExhibit WHERE id=%s'
-    #     query3 = '''SELECT users.id as user_id, artwork.id as artwork_id, 
-    #                 collectionexhibit.id as collection_id FROM users 
-    #                 inner join artwork on users.id = artwork.pk_users inner join 
-    #                 collectionexhibit on collectionexhibit.pk_artwork = artwork.id WHERE users.id = %s;'''
-        
-
-    #     self._cursor.execute(query3, (id,))
-    #     result_set = self._cursor.fetchall()
-    #     for result in result_set:
-    #         self._cursor.execute(query2, (result['collection_id'],))
-    #         self._cursor.execute(query1, (result['artwork_id'],))
-    #     self._cursor.execute(query, (id,))
-    #     self._conn.commit()
-        
-    #     print(self._cursor.rowcount, "record(s) affected")
 
     ## Sign in validations
     def user_check(self, user_name):

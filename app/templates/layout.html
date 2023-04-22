@@ -37,12 +37,12 @@
               <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.register') }}">Register</a>
               {% endif %}
               {% if session.get('user') %}
-              <select class="select-fav" id="company-select" onchange="location = this.value;">
+              <!-- <select class="select-fav" id="company-select" onchange="location = this.value;">
                 <option value="" selected hidden>Favorites</option>
                 {% for company in favorites %}
                 <option value="/{{ company }}">{{ company }}</option>
                 {% endfor %}
-              </select>
+              </select> -->
               <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.profile') }}">Profile</a>
               {% endif %}
             </div>
