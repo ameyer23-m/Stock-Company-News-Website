@@ -176,6 +176,14 @@ body {
   align-items: center;
 }
 
+
+/* Favorites */
 .add_fav {
   margin-left: auto;
+}
+
+.add_to_favorites{
+  color:#ffffff;
+  background-color: #1e1e1e;
+  border-color: #ffffff;
 }

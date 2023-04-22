@@ -25,6 +25,7 @@ from views.task_view import task_list_blueprint
 from api.task_api import task_api_blueprint
 import utils.db as DBUtils
 
+
 # Load all the private data from the 
 #   .env and .flaskenv files into our
 #   environment variables

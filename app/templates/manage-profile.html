@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>
+        Manage Profile
+    </h1>
+    <body>
+    <form action="/profile-mod" method="post">
+        <div class="container">
+            <label for="email"><b>E-mail:</b></label>
+            <input name="email" type="text" maxlength="320" placeholder="Enter your e-mail" caption="email" required>
+            <br>
+            <button type="submit">Update</button>
+            <br>
+            <span class="manage"><a href="/delete-account">Delete account?</a></span>
+        </div>
+    </form>
+    </body>
+
+{% endblock %}

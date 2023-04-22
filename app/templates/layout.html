@@ -32,14 +32,14 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              {% if IS_LOGGED_IN == False %}
+              {% if not session.get('user') %}
               <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.login') }}">Login</a>
               <a class="nav-item nav-link" href="{{ url_for('task_list_blueprint.register') }}">Register</a>
-              {% endif%}
-              {% if IS_LOGGED_IN == True %}
+              {% endif %}
+              {% if session.get('user') %}
               <select class="select-fav" id="company-select" onchange="location = this.value;">
                 <option value="" selected hidden>Favorites</option>
-                {% for company in companies %}
+                {% for company in favorites %}
                 <option value="/{{ company }}">{{ company }}</option>
                 {% endfor %}
               </select>

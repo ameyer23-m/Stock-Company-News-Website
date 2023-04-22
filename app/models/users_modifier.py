@@ -1,7 +1,8 @@
 from unittest import result
 import mysql.connector
 
-class User:
+
+class User():
     """
     Initialize a users object using its username and password.
     users
@@ -78,19 +79,19 @@ class UserDB:
         return password_record
 
     def get_usernames_id(self, username):
-        query_id = 'SELECT * FROM Users WHERE username=%s;'
+        query_id = 'SELECT id FROM Users WHERE username=%s;'
         self._cursor.execute(query_id, (username,))
         id_record = self._cursor.fetchone()
-        return id_record
+        return id_record['id'] if id_record else None
 
     def get_usernames_email(self, username):
         query_id = 'SELECT email FROM Users WHERE username=%s;'
         self._cursor.execute(query_id, (username,))
-        id_record = self._cursor.fetchone()
-        return id_record['email']
+        record = self._cursor.fetchone()
+        return record['email'] if record else None
 
     ## Update
-    def update_password(self, id, new_password):
+    def update_password(self, new_password, id):
         update_query = """
             UPDATE users
             SET password=%s
@@ -129,6 +130,15 @@ class UserDB:
         self._cursor.execute("SELECT LAST_INSERT_ID() id")
         new_user_id = self._cursor.fetchone()
         return new_user_id
+
+    def get_id_user(self, username):
+        query_id = 'SELECT id FROM users WHERE username=%s;'
+        self._cursor.execute(query_id, (username,))
+        id_record = self._cursor.fetchone()
+        if id_record is not None:
+            return id_record.get('id')
+        else:
+            return None
 
     ## Deleting 
     # def delete_user(self, id):

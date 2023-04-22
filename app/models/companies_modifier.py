@@ -81,6 +81,15 @@ class CompanyDB:
         company = self._cursor.fetchone()
 
         return company
+    
+    def get_company_id(self, stock_abbrev):
+        get_company_by_stock_abbrev = """
+                SELECT id from companies WHERE stock_abbrev = %s;
+        """
+        self._cursor.execute(get_company_by_stock_abbrev, (stock_abbrev,))
+        company = self._cursor.fetchone()
+
+        return company
 
     def get_company_name(self, stock_abbrev):
         get_company = """

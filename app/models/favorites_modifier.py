@@ -1,7 +1,7 @@
 import mysql.connector
 from models.companies_modifier import Company, CompanyDB
 
-class Favorite:
+class Favorites:
     """
     Initialize the favorites object using its stock abbreviation
 
@@ -41,42 +41,45 @@ class FavoritesDB:
         self._conn = db_conn
         self._cursor = db_cursor
 
-    def add_favorites(self, user_id):
+    def get_favorites(self, user_id):
+        get_favorites = """
+        SELECT pk_companies FROM favorites WHERE user_id = %s
         """
-        Add a new company to the favorites list for a specified user
+        self._cursor.execute(get_favorites, (user_id,))
+        favorites = self._cursor.fetchall()
+        return favorites
 
-        :param user
-        """
+    def is_favorite(self, user_id, company_id):
+        query = 'SELECT * FROM favorites WHERE user_id = %s AND pk_companies = %s'
+        self._cursor.execute(query, (user_id, company_id))
+        return self._cursor.fetchone() is not None
+
+    def add_favorite(self, user_id, company_id):
         insert_fav_query = '''
             INSERT INTO favorites (user_id, pk_companies)
-            VALURES (%s, %s);
+            VALUES (%s, %s);
         '''
-
-        self._cursor.execute(insert_fav_query, (user_id, Company.Company_id))
+        self._cursor.execute(insert_fav_query, (user_id, company_id))
         self._conn.commit()
         print(self._cursor.rowcount, "record(s) affected")
+        return company_id
 
-        self._cursor.execute("SELECT LAST_INSERT_ID() id")
-        new_user_id = self._cursor.fetchone()
-        # self._cursor.close()
-        return new_user_id
-
-
-
-    def delete_artwork(self, id):
-        """
-        Remove a artwork record from the database
-        
-        :param id: id of the artwork to be removed from the database
-        """
-        query = 'DELETE FROM favorites WHERE id=%s;'
-
-
-        self._cursor.execute(query, (id,))
+    def remove_favorite(self, user_id, company_id):
+        delete_fav_query = '''
+            DELETE FROM favorites WHERE user_id = %s AND pk_companies = %s;
+        '''
+        self._cursor.execute(delete_fav_query, (user_id, company_id))
         self._conn.commit()
+        print(self._cursor.rowcount, "record(s) deleted")
+
+
+
+    # def delete_artwork(self, id):
+    #     query = 'DELETE FROM favorites WHERE id=%s;'
+    #     self._cursor.execute(query, (id,))
+    #     self._conn.commit()
+    #     print(self._cursor.rowcount, "record(s) affected")
         
-        print(self._cursor.rowcount, "record(s) affected")
-        # self._cursor.close()
 
     def disconnect(self):
         self._conn.close()

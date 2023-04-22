@@ -28,16 +28,27 @@
     </div>
 {% endblock %}
 
+
 {% block content %}
     <!-- {% include 'navbar.html' %} -->
     <div class="flex-container">
         <h1 class="company_name">{{ company_name }} ({{ company }})</h1>
-        {% if IS_LOGGED_IN == True %}
-        <div class="add_fav">
-            <button type="submit">+</button>
-        </div>
-        {% endif%}
-    </div>
+        {% if 'user_id' in session %}
+            {% if favorites_db.is_favorite(user_id, company_id) %}
+                <div class="remove_fav">
+                    <form method="POST" action="{{ url_for('task_list_blueprint.remove_fav', company=company) }}">
+                        <button class="remove_to_favorites" type="submit">Remove from Favorites</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="add_fav">
+                    <form method="POST" action="{{ url_for('task_list_blueprint.add_fav', company=company) }}">
+                        <button class="add_to_favorites" type="submit">Add to Favorites</button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>    
     <p>Recent News</p>
     {% for news in news %}
         <article class="media content-section">
