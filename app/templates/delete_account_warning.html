@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+
+{% block full %}
+    <!-- {% include 'navbar.html' %} -->
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <h1>Are you sure you want to delete your account, {{ username }}?</h1>
+            </div>
+            <div class="account_container">
+                <form action="{{ url_for('task_list_blueprint.delete_account') }}" method="POST">
+                    <button class="signup_login" type="submit">Yes, Delete My Account</button>
+                </form>
+                <form action="{{ url_for('task_list_blueprint.profile') }}" method="POST">
+                    <button class="delete_account" type="submit">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </article>
+{% endblock %}

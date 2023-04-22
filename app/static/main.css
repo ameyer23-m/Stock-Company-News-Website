@@ -194,3 +194,17 @@ body {
   background-color: #1e1e1e;
   border-color: #ffffff;
 }
+
+.delete_account{
+  color:#ffffff;
+  background-color: #1e1e1e;
+  border-color: #ffffff;
+  order: 2;
+  margin-right: 200px;
+}
+
+.account_container{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15%;
+}

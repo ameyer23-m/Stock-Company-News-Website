@@ -5,14 +5,6 @@ import mysql.connector
 class User():
     """
     Initialize a users object using its username and password.
-    users
-        (
-            id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-            password VARCHAR(255),
-            username VARCHAR(30),
-            email VARCHAR(30),
-            CONSTRAINT pk_users PRIMARY KEY (id)
-        );
     """
     def __init__(self, password, username, email, id=None):
         self._password = password
@@ -90,6 +82,15 @@ class UserDB:
         record = self._cursor.fetchone()
         return record['email'] if record else None
 
+    def get_id_user(self, username):
+        query_id = 'SELECT id FROM users WHERE username=%s;'
+        self._cursor.execute(query_id, (username,))
+        id_record = self._cursor.fetchone()
+        if id_record is not None:
+            return id_record.get('id')
+        else:
+            return None
+
     ## Update
     def update_user(self, new_password, new_email, new_username, username):
         update_query = """
@@ -102,11 +103,6 @@ class UserDB:
         self._cursor.execute("SELECT LAST_INSERT_ID() id")
         user_id = self._cursor.fetchone()
         return user_id
-
-
-
-
-
 
     ## Add
     def add_user(self, accounts):  #------------------------------ used
@@ -124,14 +120,7 @@ class UserDB:
         new_user_id = self._cursor.fetchone()
         return new_user_id
 
-    def get_id_user(self, username):
-        query_id = 'SELECT id FROM users WHERE username=%s;'
-        self._cursor.execute(query_id, (username,))
-        id_record = self._cursor.fetchone()
-        if id_record is not None:
-            return id_record.get('id')
-        else:
-            return None
+
 
     ## Sign in validations
     def user_check(self, user_name):
@@ -154,6 +143,29 @@ class UserDB:
             return True
         else:
             return False
+
+    # Delete User
+    # def delete_account(self, id):
+    #     delete_query = 'DELETE FROM Users WHERE id = %s'
+    #     delete_favorites_query = 'DELETE FROM Favorites WHERE id=%s'
+    #     self._cursor.execute(delete_query, (id,))
+    #     print(self._cursor.rowcount, "record(s) deleted")
+    #     self._conn.commit()
+
+
+    def delete_account(self, user_id):
+        delete_favorites_query = 'DELETE FROM favorites WHERE user_id = %s;'
+        delete_user_query = 'DELETE FROM users WHERE id = %s;'
+        try:
+            self._cursor.execute(delete_favorites_query, (user_id,))
+            num_favorites_deleted = self._cursor.rowcount
+            self._cursor.execute(delete_user_query, (user_id,))
+            num_users_deleted = self._cursor.rowcount
+            self._conn.commit()
+            print(f"Deleted {num_users_deleted} user(s) and {num_favorites_deleted} favorite(s) for user with id {user_id}")
+        except Exception as e:
+            print(f"Error deleting user and favorites: {e}")
+            self._conn.rollback()
 
 
     def disconnect(self):

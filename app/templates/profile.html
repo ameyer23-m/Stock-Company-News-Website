@@ -23,9 +23,12 @@
             <h1> Your username is {{ user }}</h1>
             <h1> Your password is {{ password }}</h1>
             <h1> Your email is {{ email }}</h1>
-            <div class="container">
+            <div class="account_container">
                 <form action="{{ url_for('task_list_blueprint.manage_account') }}" method="POST">
                     <button class="signup_login" type="submit">Manage Account?</button>
+                </form>
+                <form action="{{ url_for('task_list_blueprint.delete_account_warning') }}" method="POST">
+                    <button class="delete_account" type="submit">Delete Account?</button>
                 </form>
             </div>
         </div>

@@ -1,5 +1,55 @@
 {% extends "layout.html" %}
-{% block content %}
+
+{% block full %}
     <h1>About Page</h1>
-    <p>This project is for the cs232 fina project created by Adam Meyer</p>
-{% endblock content %}
+    <body>
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h3>Our Mission</h3>
+                </div>
+                <p>We aim to provide accurate and timely news updates on stock companies to help investors make informed decisions.</p>
+            </div>
+        </article>
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h3>Our History</h3>
+                </div>
+                <p>Our app was developed in the current month of April 2023 by a team led by Adam Meyer and Isaac Schwartz.</p>            
+            </div>
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h3>Our Team</h3>
+                </div>
+                <p>Adam Meyer - Co-Founder, Lead Developer, and UI/UX Designer</p>
+                <p>Isaac Schwartz - Co-Founder</p>
+            </div>
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h3>Contact Us</h3>
+                </div>
+                <p>Email: apmeyer16@gmail.com</p>
+                <p>Phone: 720-258-7752</p>
+            </div>
+        </article>
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h3>Testimonials</h3>
+                </div>
+                <p>"Invest Insights has helped me stay up-to-date with the latest news and trends in the stock market. Highly recommend!" - David Byrne</p>
+                <p>"I've been using this Invest Insights for a week now and I'm already seeing the benefits. It's easy to use and provides valuable insights." - Zach Bryan </p>
+            </div>    
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h3>Awards</h3>
+                </div>
+                <p>2023 Best Financial Website - Tech Digest</p>
+                <p>2023 Website of the Year - Financial Times</p>
+            </div>
+        </article>
+        <h4>Disclaimer</h4>
+        <p>The information provided in our app is for informational purposes only and should not be relied upon for investment decisions. We do not provide financial advice or recommendations.</p>
+    </body>
+{% endblock %}

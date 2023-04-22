@@ -74,9 +74,9 @@ def register():
     form = RegistrationForm()
     user_db = UserDB(g.mysql_db, g.mysql_cursor)
     if form.validate_on_submit():
-        username = form.new_username.data
-        password = form.new_password.data
-        email = form.new_email.data
+        username = form.username.data
+        password = form.password.data
+        email = form.email.data
         if user_db.get_username(username):
             flash('Username taken!', 'danger')
             return redirect(url_for('task_list_blueprint.register'))
@@ -86,7 +86,7 @@ def register():
         user = User(username=username, email=email, password=password)
         user_db.add_user(user)
         flash(f'Account created for {username}!', 'success')
-        return redirect(url_for('task_list_blueprint.home'))
+        return redirect(url_for('task_list_blueprint.login'))
 
     return render_template('register.html', title='Register', form=form)
 
@@ -178,4 +178,17 @@ def manage_account():
     return render_template('manage_account.html', title='Manage Account', form=form)
 
 
+@task_list_blueprint.route("/delete_account_warning", methods=['GET', 'POST'])
+def delete_account_warning():
+    username = session.get('user')
+    return render_template('delete_account_warning.html', username=username)
 
+
+@task_list_blueprint.route("/delete_account", methods=['GET', 'POST'])
+def delete_account():
+    user_id = session.get('user_id')
+    user_db = UserDB(g.mysql_db, g.mysql_cursor)
+    user_db.delete_account(user_id)
+    session.pop('user', None)
+    flash('Your account has been deleted', 'success')
+    return redirect('/home')
