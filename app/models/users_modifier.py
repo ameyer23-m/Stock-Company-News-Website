@@ -40,49 +40,80 @@ class UserDB:
     
     ## Get 
     def get_username(self, user_name):
+        """
+        Checks if the username is in the db.
+
+        Args:
+            param1: the usernme.
+
+        Returns:
+            The username.
+        """
         query_username = 'SELECT * FROM users WHERE username=%s;'
         self._cursor.execute(query_username, (user_name,))
         username_record = self._cursor.fetchone()
         return username_record
 
     def get_email(self, email):
+        """
+        Checks if the email is in the db.
+
+        Args:
+            param1: the email.
+
+        Returns:
+            The email.
+        """
         query_email = 'SELECT * FROM users WHERE email=%s;'
         self._cursor.execute(query_email, (email,))
         email_record = self._cursor.fetchone()
         return email_record
 
-    def get_usernames_id(self, username):
-        query_id = 'SELECT * FROM users WHERE username=%s;'
-        self._cursor.execute(query_id, (username,))
-        id_record = self._cursor.fetchone()
-        return id_record
 
     def get_id(self, username, password):
+        """
+        get the users id for the validate user function
+
+        Args:
+            param1: the username
+            param2: the password
+
+        Returns:
+            The db id corresponding with the username and password.
+        """
         id_record = 0
         query_id = 'SELECT * FROM users WHERE username=%s and password=%s;'
         self._cursor.execute(query_id, (username, password))
         id_record = self._cursor.fetchone()
         return id_record
-    
-    def get_password(self, pass_word):
-        query_password = 'SELECT * FROM users WHERE password=%s;'
-        self._cursor.execute(query_password, (pass_word,))
-        password_record = self._cursor.fetchone()
-        return password_record
 
-    def get_usernames_id(self, username):
-        query_id = 'SELECT id FROM Users WHERE username=%s;'
-        self._cursor.execute(query_id, (username,))
-        id_record = self._cursor.fetchone()
-        return id_record['id'] if id_record else None
+
 
     def get_usernames_email(self, username):
+        """
+        Finds the email of the user
+
+        Args:
+            param1: the username.
+
+        Returns:
+            The email or None.
+        """
         query_id = 'SELECT email FROM Users WHERE username=%s;'
         self._cursor.execute(query_id, (username,))
         record = self._cursor.fetchone()
         return record['email'] if record else None
 
     def get_id_user(self, username):
+        """
+        Finds the id of the username
+
+        Args:
+            param1: the username.
+
+        Returns:
+            The id or None.
+        """
         query_id = 'SELECT id FROM users WHERE username=%s;'
         self._cursor.execute(query_id, (username,))
         id_record = self._cursor.fetchone()
@@ -93,6 +124,18 @@ class UserDB:
 
     ## Update
     def update_user(self, new_password, new_email, new_username, username):
+        """
+        Updates the users information.
+
+        Args:
+            param1: the new password
+            param2: the new email
+            param3: the new username
+            param4: the original username
+
+        Returns:
+            The user id.
+        """
         update_query = """
             UPDATE users
             SET password=%s, email=%s, username=%s
@@ -108,6 +151,12 @@ class UserDB:
     def add_user(self, accounts):  #------------------------------ used
         """
         Add a new users username record to the database
+        
+        Args:
+            param1: the accounts which included the username, password, and email
+
+        Returns:
+            The user id.
         """
         insert_user_query = '''
             INSERT INTO users (username, password, email)
@@ -121,39 +170,37 @@ class UserDB:
         return new_user_id
 
 
-
-    ## Sign in validations
-    def user_check(self, user_name):
-        person = self.get_username(user_name)
-        if not person:
-            return False
-        else:
-            return True
         
-    def validate_user(self, user_name, given_password): # ----------------------------- used
+    def validate_user(self, user_name, given_password):
+        """
+        Checks that the username and password exist in the same row
+        
+        Args:
+            param1: the username
+            param2: the password
+
+        Returns:
+            Boolean true or false.
+        """
         persons_id = self.get_id(user_name, given_password)
         if persons_id:
             return True
         else:
             return False
 
-    def validate_email(self, email):
-        person = self.get_email(email)
-        if person:
-            return True
-        else:
-            return False
+
 
     # Delete User
-    # def delete_account(self, id):
-    #     delete_query = 'DELETE FROM Users WHERE id = %s'
-    #     delete_favorites_query = 'DELETE FROM Favorites WHERE id=%s'
-    #     self._cursor.execute(delete_query, (id,))
-    #     print(self._cursor.rowcount, "record(s) deleted")
-    #     self._conn.commit()
-
-
     def delete_account(self, user_id):
+        """
+        Deletes the Users account
+        
+        Args:
+            param1: the user id
+
+        Returns:
+            Error is it doesnt exist.
+        """
         delete_favorites_query = 'DELETE FROM favorites WHERE user_id = %s;'
         delete_user_query = 'DELETE FROM users WHERE id = %s;'
         try:

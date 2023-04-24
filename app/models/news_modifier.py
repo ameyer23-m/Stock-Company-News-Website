@@ -57,6 +57,9 @@ class NewsDB:
         self._cursor = db_cursor
 
     def get_all(self):
+        """
+        This gets all the news articles
+        """
         select_all = """
         SELECT * from news;
         """
@@ -65,6 +68,15 @@ class NewsDB:
         return news
 
     def get_all_by_company(self, stock_abbrev):
+        """
+        Gets all the news items for a certain company.
+
+        Args:
+            param1: The Stock Symbol
+
+        Returns:
+            Each new item in the db with the specified stock symbol
+        """
         select_all_by_comp = """
         SELECT news.*, companies.company 
         FROM news 
