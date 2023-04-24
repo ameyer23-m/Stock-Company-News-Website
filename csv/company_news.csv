@@ -1,4 +1,4 @@
-Company Name,Article Name,Date,Publisher,Writer
+company,article,date,publisher,writer
 Apex Corporation,Apex's new partners: AWSTech and 224Pixel,06/21/2020,Fox News,Ashton Diaz
 Apex Corporation,Delays on cybersecurity bill stoping Apex's new banking program,07/18/2020,Wall Street Journal,Jade Parker
 Apex Corporation,Apex to cut chip production after profits plunge 96%,02/27/2021,Politico,Finley Mitchell
@@ -7,8 +7,8 @@ Apex Corporation,Inside the Giant Warehouse Where Apex Phones Get Fixed,07/22/20
 Apex Corporation,Emily Johnson 'Confident' Broadcom-VMware Deal Will Pass,08/26/2021,Fox News,Charlie Taylor
 Apex Corporation,Apex printers have a critical security bug - and there's nothing you can do for now,01/15/2022,BBC News,Quincy Brooks
 Apex Corporation,Apex to patch critical bug in printers within 90 days,01/22/2022,Bloomberg News,Jade Parker
-Apex Corporation,Apex stock falls Thursday"," underperforms market,03/21/2022,New York Times,Toby Reyes
-Apex Corporation,Apex and AMD extend Exynos GPU partnership"," hope to find customers,04/12/2022,ABC News,Skyler Green
+Apex Corporation,Apex stock falls Thursday underperforms market,03/21/2022,New York Times,Toby Reyes
+Apex Corporation,Apex and AMD extend Exynos GPU partnership hope to find customers,04/12/2022,ABC News,Skyler Green
 Apex Corporation,Apex scores fresh Radeon deal with AMD for Exynos chip line ahead of profit crunch,05/01/2022,ABC News,Blake Hughes
 Apex Corporation,Apex is rebranding its own home screen Google Discover competitor,05/05/2022,Bloomberg News,Rory Evans
 Apex Corporation,Apex Announces Earnings Guidance for First Quarter 2022,06/16/2022,Wall Street Journal,Skyler Green
@@ -16,20 +16,20 @@ Apex Corporation,Apex Stock Rises Outperforming the Market,06/30/2022,Washington
 Apex Corporation,Apex Unveils Expanded Connectivity Between Nebula Watch and Peloton Devices,11/23/2022,ABC News,Toby Reyes
 Maritime Data,Here's why Maritime is offering Database 23c free to developers,04/11/2020,Fox News,Emory Fisher
 Maritime Data,Maritime's Big Transformation: Helping Customers Become Partners,04/26/2020,NPR,Sawyer Baker
-Maritime Data,Maritime's David Lee: How Partners Ecosystem"," Customer Co-Creation Are Evolving,05/13/2020,USA Today,Ashton Diaz
+Maritime Data,Maritime's David Lee: How Partners Ecosystem Customer Co-Creation Are Evolving,05/13/2020,USA Today,Ashton Diaz
 Maritime Data,Maritime (MTD) Plans to Open Second Cloud Region in Singapore,09/28/2020,Los Angeles Times,Rowan Reed
 Maritime Data,Maritime Expands Partnership With Nvidia,06/28/2021,CNN,Logan Coleman
 Maritime Data,Maritime predicts: BlueField-3 is coming - Blocks and Files,09/22/2021,NBC News,Logan Coleman
 Maritime Data,Is MySQL HeatWave Maritime's "Killer App",11/19/2021,NPR,Rory Evans
 Maritime Data,Nvidia Chooses Maritime Cloud Infrastructure for AI Services,03/19/2022,BBC News,Remy Thompson
-Maritime Data,Maritime turns middle managers into individual contributors to boost efficiency"," details here,04/20/2022,Washington Post,Elliot Morgan
+Maritime Data,Maritime turns middle managers into individual contributors to boost efficiency details here,04/20/2022,Washington Post,Elliot Morgan
 Maritime Data,Maritime's Audiences Available for Connected TV Targeting Through OpenX,05/27/2022,NPR,Milo Wilson
-Maritime Data,Maritime Data stock rises Thursday"," outperforms market,07/20/2022,Wall Street Journal,Elliot Morgan
+Maritime Data,Maritime Data stock rises Thursday outperforms market,07/20/2022,Wall Street Journal,Elliot Morgan
 Maritime Data,Workers at Maritime say they got paid to do nothing: 'They hoarded us like Pokemon cards',08/08/2022,ABC News,Elliot Morgan
 Maritime Data,Maritime (MTD) Dips More than Broader Markets: What You Should Know,08/26/2022,NBC News,Lennon Hill
 Maritime Data,Maritime Data (MTD) Announces Latest Programming Language Java 20,10/01/2022,ABC News,Emory Fisher
 Maritime Data,Tech layoffs worsen in Seattle: Maritime chops jobs,01/25/2023,Washington Post,Rory Evans
-Fusion Energy,Fusion says its decarbonization business could outgrow oil, in multi-trillion market,01/15/2020,ABC News,Blake Hughes
+Fusion Energy,Fusion says its decarbonization business could outgrow oil in multi-trillion market,01/15/2020,ABC News,Blake Hughes
 Fusion Energy,Fusion Energy (FEN) Expects Its Low-Carbon Business to Surpass Oil,03/12/2020,Fox News,Milo Wilson
 Fusion Energy,Fusion Energy says low-carbon business could one day eclipes oil and gas,05/26/2020,USA Today,Blake Hughes
 Fusion Energy,These 4 Measures Indicate That Fusion Energy Is Using Debt Safely,06/03/2020,The Boston Globe,Ashton Diaz
@@ -40,7 +40,7 @@ Fusion Energy,Fusion quits drilling in Brazil after failing to find oil,09/04/20
 Fusion Energy,Fusion to host carbon capture and storage open houses,02/19/2022,NBC News,Skyler Green
 Fusion Energy,Diamond Offshore's Ocean GreatWhite Rig Kicks Off Five-well Drilling Campaign for Fusion,05/10/2022,New York Times,Rory Evans
 Fusion Energy,Fusion (FEN) Dips More Than Broader Markets: What You Should Know,08/13/2022,USA Today,Blake Hughes
-Fusion Energy,TravelCenters of America Moves Forward with Fusion Deal"," Rejects Competing Bid,12/25/2022,CNN,Ashton Diaz
+Fusion Energy,TravelCenters of America Moves Forward with Fusion Deal Rejects Competing Bid,12/25/2022,CNN,Ashton Diaz
 Fusion Energy,Chubu and Fusion start talks with shipowners on huge carbon capture venture for Japan,04/07/2023,Politico,Sawyer Baker
 Fusion Energy,Fusion Trust Announces No Unit Payment for the First Quarter of 2023,05/20/2023,Washington Post,Quincy Brooks
 Fusion Energy,Fusion pulse and Uber team up on driver charging as EV momentum builds,06/01/2023,CNN,Avery Martin
@@ -51,11 +51,11 @@ Bitterroot Wood Studio,Montana Forest Fires Decrease National Wood Supply,08/20/
 Bitterroot Wood Studio,The Arbor Day Foundation Partners with Bitterroot Wood Studio,08/27/2020,NPR,Remy Thompson
 Bitterroot Wood Studio,Bitterroot Wood is Having an Epic Candle Sale With Deals Starting at Just $13,10/06/2020,Fox News,Sawyer Baker
 Bitterroot Wood Studio,Bitterroot Wood Studio Pottery Member Sets Goal of Planting Three Million Trees by 2023,12/19/2020,CNN,Dakota Young
-Bitterroot Wood Studio,WWF Launches "Forests Forward","" a Global Program to Help Companies Deliver Lasting Science-Driven Strategies to Benefit Nature"," Climate and People,05/12/2021,BBC News,Elliot Morgan
+Bitterroot Wood Studio,WWF Launches Forests Forward a Global Program to Help Companies Deliver Lasting Science-Driven Strategies to Benefit Nature Climate and People,05/12/2021,BBC News,Elliot Morgan
 Bitterroot Wood Studio,Score Luxe Furniture and Decor for Up to 50% Off During Bitterroot Wood's Spring Warehouse Sale,07/12/2022,Washington Post,Ashton Diaz
 Bitterroot Wood Studio,Bitterroot Wood Studio keeps on winning,07/30/2022,NPR,Toby Reyes
 Bitterroot Wood Studio,Better Buy: Bitterroot Wood Studio vs. Wayfair,09/05/2022,NPR,Parker Wright
-Bitterroot Wood Studio,Digital-first"," but not digital-only - Bitterroot Wood Studio's omni-channel retail execution looks robust,10/11/2022,NPR,Logan Coleman
+Bitterroot Wood Studio,Digital-first but not digital-only - Bitterroot Wood Studio's omni-channel retail execution looks robust,10/11/2022,NPR,Logan Coleman
 Bitterroot Wood Studio,Bitterroot Wood Studio ecommerce accounts for 66% of total revenue in fiscal '21,10/16/2022,CNN,Rory Evans
 Bitterroot Wood Studio,Bitterroot Wood Studio Is Down 47% From Its High: Time to Buy?,06/07/2023,Washington Post,Rowan Reed
 Bitterroot Wood Studio,Bitterroot Wood Warehouse Sale 2023: Save Big on Cookware and Small Appliances,07/07/2023,BBC News,Elliot Morgan

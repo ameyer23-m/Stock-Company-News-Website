@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block dropdown %}
+<div class="col-md-4">
+    <div class="container">
+        <form action="{{ url_for('task_list_blueprint.logout') }}" method="POST">
+            <button class="signout" type="submit">Sign Out</button>
+        </form>
+    </div>
+</div>
+{% endblock dropdown %}
+
+{% block content %}
+    <!-- {% include 'navbar.html' %} -->
+    <div class="flex-container">
+        <h1>Hello {{ user }}</h1>
+    </div>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <p> Manage your info and security to make Invest Insights work better for you. </p>
+            </div>
+            <h1> Your username is {{ user }}</h1>
+            <h1> Your password is {{ password }}</h1>
+            <h1> Your email is {{ email }}</h1>
+            <div class="account_container">
+                <form action="{{ url_for('task_list_blueprint.manage_account') }}" method="POST">
+                    <button class="signup_login" type="submit">Manage Account?</button>
+                </form>
+                <form action="{{ url_for('task_list_blueprint.delete_account_warning') }}" method="POST">
+                    <button class="delete_account" type="submit">Delete Account?</button>
+                </form>
+            </div>
+        </div>
+    </article>
+{% endblock %}

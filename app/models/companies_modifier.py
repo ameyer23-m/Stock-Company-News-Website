@@ -56,7 +56,7 @@ class Company:
 
 class CompanyDB:
     """
-    This class provides an interface for interacting with a database of Users.
+    This class provides an interface for interacting with a database of Comapnies.
     """
     def __init__(self, db_conn, db_cursor):
         self._conn = db_conn
@@ -69,16 +69,85 @@ class CompanyDB:
         """
         self._cursor.execute(select_all_abbrev_query)
 
-        return self._cursor.fetchall()
+        companies = self._cursor.fetchall()
+        return [company['stock_abbrev'] for company in companies]
     
+
     def get_company_by_stock_abbrev(self, stock_abbrev):
         get_company_by_stock_abbrev = """
-                SELECT stock_abbrev from companies WHERE id = %s;
+                SELECT stock_abbrev from companies WHERE stock_abbrev = %s;
         """
         self._cursor.execute(get_company_by_stock_abbrev, (stock_abbrev,))
         company = self._cursor.fetchone()
 
         return company
+    
+    def get_company_id(self, stock_abbrev):
+        get_company_by_stock_abbrev = """
+                SELECT id from companies WHERE stock_abbrev = %s;
+        """
+        self._cursor.execute(get_company_by_stock_abbrev, (stock_abbrev,))
+        company = self._cursor.fetchone()
+
+        return company
+
+    def get_company_name(self, stock_abbrev):
+        get_company = """
+            SELECT company from companies WHERE stock_abbrev = %s;
+        """
+        self._cursor.execute(get_company, (stock_abbrev,))
+        company = self._cursor.fetchone()
+        if company is not None:
+            return company['company']
+        else:
+            return None
+        
+
+    def get_ceo_name(self, stock_abbrev):
+        get_ceo_name = """
+            SELECT ceo from companies WHERE stock_abbrev = %s;
+        """
+        self._cursor.execute(get_ceo_name, (stock_abbrev,))
+        company = self._cursor.fetchone()
+        if company is not None:
+            return company['ceo']
+        else:
+            return None
+
+    def get_founded_date(self, stock_abbrev):
+        get_founded_date = """
+            SELECT founded_date from companies WHERE stock_abbrev = %s;
+        """
+        self._cursor.execute(get_founded_date, (stock_abbrev,))
+        company = self._cursor.fetchone()
+        if company is not None:
+            return company['founded_date']
+        else:
+            return None
+
+    def get_founded_location(self, stock_abbrev):
+        get_founded_location = """
+            SELECT founded_location from companies WHERE stock_abbrev = %s;
+        """
+        self._cursor.execute(get_founded_location, (stock_abbrev,))
+        company = self._cursor.fetchone()
+        if company is not None:
+            return company['founded_location']
+        else:
+            return None
+            
+
+    def get_industry(self, stock_abbrev):
+        get_industry = """
+            SELECT industry from companies WHERE stock_abbrev = %s;
+        """
+        self._cursor.execute(get_industry, (stock_abbrev,))
+        company = self._cursor.fetchone()
+        if company is not None:
+            return company['industry']
+        else:
+            return None
+
 
     def add_company(self, new_company):
         insert_user_query = '''
@@ -123,6 +192,20 @@ class CompanyDB:
         
         print(self._cursor.rowcount, "record(s) affected")
         # self._cursor.close()
+
+    # def company_check(self, company):
+    #     company = self.get_company(company)
+    #     if not company:
+    #         return False
+    #     else:
+    #         return True
+        
+    # def company_user(self, company,stock_abbrev,industry,ceo,founded_date,founded_location):
+    #     company_id = self.get_id(company, stock_abbrev, industry, ceo, founded_date, founded_location)
+    #     if company_id:
+    #         return True
+    #     else:
+    #         return False
 
     def disconnect(self):
         self._conn.close()

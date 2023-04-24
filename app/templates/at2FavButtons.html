@@ -1,0 +1,15 @@
+<!-- {% if 'user_id' in session %}
+            {% if favorites_db.is_favorite(user_id, company_id) %}
+                <div class="remove_fav">
+                    <form method="POST" action="{{ url_for('task_list_blueprint.remove_fav', company=company) }}">
+                        <button class="remove_to_favorites" type="submit">Remove from Favorites</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="add_fav">
+                    <form method="POST" action="{{ url_for('task_list_blueprint.add_fav', company=company) }}">
+                        <button class="add_to_favorites" type="submit">Add to Favorites</button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endif %} -->

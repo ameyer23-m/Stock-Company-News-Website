@@ -1,7 +1,7 @@
 import mysql.connector
 from models.companies_modifier import Company, CompanyDB
 
-class Favorite:
+class Favorites:
     """
     Initialize the favorites object using its stock abbreviation
 
@@ -41,42 +41,7 @@ class FavoritesDB:
         self._conn = db_conn
         self._cursor = db_cursor
 
-    def add_favorites(self, user_id):
-        """
-        Add a new company to the favorites list for a specified user
-
-        :param user
-        """
-        insert_fav_query = '''
-            INSERT INTO favorites (user_id, pk_companies)
-            VALURES (%s, %s);
-        '''
-
-        self._cursor.execute(insert_fav_query, (user_id, Company.Company_id))
-        self._conn.commit()
-        print(self._cursor.rowcount, "record(s) affected")
-
-        self._cursor.execute("SELECT LAST_INSERT_ID() id")
-        new_user_id = self._cursor.fetchone()
-        # self._cursor.close()
-        return new_user_id
-
-
-
-    def delete_artwork(self, id):
-        """
-        Remove a artwork record from the database
         
-        :param id: id of the artwork to be removed from the database
-        """
-        query = 'DELETE FROM favorites WHERE id=%s;'
-
-
-        self._cursor.execute(query, (id,))
-        self._conn.commit()
-        
-        print(self._cursor.rowcount, "record(s) affected")
-        # self._cursor.close()
 
     def disconnect(self):
         self._conn.close()
