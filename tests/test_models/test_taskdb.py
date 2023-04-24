@@ -15,10 +15,11 @@ def test_get_company_by_stock_abbrev(db_test_client):
     testdb = CompanyDB(conn, cursor)
 
     testcompany = Company("Apple", "APPL")
-    testdb.add_user(testcompany)
+    testdb.add_user(testcompany) # type: ignore
 
     inserted_company = testdb.get_company_by_stock_abbrev("APPL")
 
     assert inserted_company["stock_abbrev"] == "APPL"
     assert inserted_company["company"] == "Apple"
     conn.commit()
+
