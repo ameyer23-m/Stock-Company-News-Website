@@ -2,7 +2,7 @@
 # Invest Insights
 
 ## Description
-A website that allows any visitor to see information a certain stock companies, such as their stock price, their sales, and their recent news, while along being able to organize their favorite stocks.
+A website that allows any visitor to see news stories and information a certain stock companies, while along being able to create their own profile for the website.
 
 ## How To Use
 

@@ -1,3 +1,8 @@
+"""
+Will be used later but not for the final version for the cs232 class
+"""
+
+
 stock_abbrev,date,opening_price,daily_max,daily_min,closing_price
 APX,01/01/2020,165.65,171.36,151.45,154.68
 APX,01/02/2020,154.68,155.19,145.98,147.38
