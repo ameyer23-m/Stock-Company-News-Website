@@ -12,7 +12,6 @@ from models.favorites_modifier import Favorites, FavoritesDB
 
 task_list_blueprint = Blueprint('task_list_blueprint', __name__)
 
-
 @task_list_blueprint.route("/")
 @task_list_blueprint.route("/home")
 def home():
@@ -28,16 +27,9 @@ def home():
     companies = company_db.get_all_companies_abbrev()
     return render_template('home.html', news = news, companies = companies)
 
-
-
-
-
 @task_list_blueprint.route("/about")
 def about():
     return render_template('about.html')
-
-
-
 
 @task_list_blueprint.route('/<company>')
 def company(company):
@@ -53,7 +45,6 @@ def company(company):
     company_industry = company_db.get_industry(company)
     company_id = company_db.get_company_id(company)
 
-
     news_db = NewsDB(g.mysql_db, g.mysql_cursor)
     news = news_db.get_all_by_company(company)
     today = datetime.combine(date.today(), datetime.min.time())
@@ -64,10 +55,6 @@ def company(company):
                         company_name=company_name, company_ceo = company_ceo, company_founded_date=company_founded_date,
                         company_founded_location=company_founded_location, company_industry=company_industry, user_id=user_id,
                         company_id=company_id)
-
-
-
-
 
 @task_list_blueprint.route("/register", methods=['GET', 'POST'])
 def register():
@@ -89,12 +76,6 @@ def register():
         return redirect(url_for('task_list_blueprint.login'))
 
     return render_template('register.html', title='Register', form=form)
-
-
-
-
-
-
 
 @task_list_blueprint.route("/login", methods=['GET', 'POST'])
 def login():
@@ -118,20 +99,11 @@ def login():
 
     return render_template('login.html', title='Login', form=form)
 
-
-
-
-
-
 @task_list_blueprint.route("/logout", methods=['GET', 'POST'])
 def logout():
     session.pop('user', None)
     flash('You have been logged out', 'success')
     return redirect('/home')
-
-
-
-
 
 @task_list_blueprint.route("/profile", methods=['GET', 'POST'])
 def profile():
@@ -140,8 +112,6 @@ def profile():
     email = session.get('email')
 
     return render_template('profile.html', user=user, password=password, email=email)
-
-
 
 @task_list_blueprint.route("/manage_account", methods=['GET', 'POST'])
 def manage_account():
@@ -177,12 +147,10 @@ def manage_account():
 
     return render_template('manage_account.html', title='Manage Account', form=form)
 
-
 @task_list_blueprint.route("/delete_account_warning", methods=['GET', 'POST'])
 def delete_account_warning():
     username = session.get('user')
     return render_template('delete_account_warning.html', username=username)
-
 
 @task_list_blueprint.route("/delete_account", methods=['GET', 'POST'])
 def delete_account():
@@ -192,3 +160,4 @@ def delete_account():
     session.pop('user', None)
     flash('Your account has been deleted', 'success')
     return redirect('/home')
+    

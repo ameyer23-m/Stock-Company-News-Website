@@ -69,7 +69,6 @@ class UserDB:
         email_record = self._cursor.fetchone()
         return email_record
 
-
     def get_id(self, username, password):
         """
         get the users id for the validate user function
@@ -86,8 +85,6 @@ class UserDB:
         self._cursor.execute(query_id, (username, password))
         id_record = self._cursor.fetchone()
         return id_record
-
-
 
     def get_usernames_email(self, username):
         """
@@ -169,8 +166,6 @@ class UserDB:
         new_user_id = self._cursor.fetchone()
         return new_user_id
 
-
-        
     def validate_user(self, user_name, given_password):
         """
         Checks that the username and password exist in the same row
@@ -187,8 +182,6 @@ class UserDB:
             return True
         else:
             return False
-
-
 
     # Delete User
     def delete_account(self, user_id):
@@ -214,6 +207,6 @@ class UserDB:
             print(f"Error deleting user and favorites: {e}")
             self._conn.rollback()
 
-
     def disconnect(self):
         self._conn.close()
+        
