@@ -18,11 +18,11 @@ import uuid
 # Imports all 3rd-party libraries
 from flask import Flask, g
 from dotenv import load_dotenv
-from flask_login import LoginManager
+
 
 # Imports for blueprints and other modules written for the application
-from views.task_view import task_list_blueprint
-from api.task_api import task_api_blueprint
+from views.routes import task_list_blueprint
+# from api.task_api import task_api_blueprint
 import utils.db as DBUtils
 
 
@@ -50,8 +50,7 @@ app.config["SECRET_KEY"] = uuid.uuid4().hex
 
 # Setup Views
 app.register_blueprint(task_list_blueprint)
-app.register_blueprint(task_api_blueprint)
-# login_manager = LoginManager(app)
+
 
 
 # Helper function to establish a connection to the database

@@ -65,13 +65,12 @@ while start_date <= end_date:
             # Append data to the list
             data.append([company, order_id, order_date.strftime('%m/%d/%Y'), ship_date.strftime('%m/%d/%Y'), shipping_type, product, sales, profit, shipping_cost, year])
 
-    
     # Increment the start date by a random number of days (1-3 days)
     start_date += datetime.timedelta(days=random.randint(1, 3))
-    
 
 # Add to csv
 with open('product_sales.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['company_name', 'order_id', 'order_date', 'ship_date', 'shipping_type', 'product', 'sales', 'profit', 'shipping_cost', 'year'])
     writer.writerows(data)
+    

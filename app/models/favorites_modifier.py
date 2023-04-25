@@ -1,5 +1,10 @@
+"""
+Will be used later but not for the final version for the cs232 class
+"""
+
 import mysql.connector
 from models.companies_modifier import Company, CompanyDB
+
 
 class Favorites:
     """

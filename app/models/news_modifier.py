@@ -4,17 +4,6 @@ import mysql.connector
 class News:
     """
     Initialize the news object
-         news
-        (
-            id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-            company_id INT UNSIGNED,
-            article VARCHAR(200),
-            date DATETIME,
-            publisher VARCHAR(50),
-            writer VARCHAR(40),
-            CONSTRAINT pk_news PRIMARY KEY (id),
-            CONSTRAINT fk_companies_news FOREIGN KEY (company_id) REFERENCES companies(id)           
-        );
     """
 
     def __init__(self, company_id, article, date, publisher, writer):
@@ -87,7 +76,5 @@ class NewsDB:
         news = self._cursor.fetchall()
         return [News(int(n['company_id']), n['article'], n['date'], n['publisher'], n['writer']) for n in news]
 
-
     def disconnect(self):
         self._conn.close()
-

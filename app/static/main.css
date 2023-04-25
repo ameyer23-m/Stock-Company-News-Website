@@ -2,6 +2,10 @@ body {
     background: #1e1e1e; /*background color */
     color: #ffffff; /* text */
     margin-top: 5rem;
+    position: relative;
+    min-height: 100vh; 
+    padding-bottom: 50px;
+    font-family: "Old Standard", serif;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -207,4 +211,14 @@ body {
   display: flex;
   justify-content: space-between;
   margin-left: 15%;
+}
+
+.site-footer{
+  color: #cbd5db;
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }

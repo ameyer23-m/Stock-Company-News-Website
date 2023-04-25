@@ -7,12 +7,10 @@ import random
 import datetime
 import csv
 
-
 # Define company names, publishers, and writers
 companies = ["Apex Corporation","Maritime Data","Fusion Energy","Bitterroot Wood Studio","Echo"]
 publishers = ['New York Times', 'Washington Post', 'Wall Street Journal', 'USA Today', 'Los Angeles Times','ABC News', 'BBC News', 'CNN', 'Fox News', 'NBC News', 'The Boston Globe', 'Time Magazine', 'Politico', 'Bloomberg News', 'NPR']
 writers = ['Milo Wilson', 'Remy Thompson', 'Jade Parker', 'Camryn Baker', 'Skyler Green', 'Quincy Brooks', 'Avery Martin', 'Rory Evans', 'Lennon Hill', 'Phoenix Scott', 'Rowan Reed', 'Noel Clarke', 'Emory Fisher', 'Harley Nelson', 'Elliot Morgan', 'Finley Mitchell', 'August Sanchez', 'Sawyer Baker', 'Charlie Taylor', 'Ashton Diaz', 'Toby Reyes', 'Blake Hughes', 'Dakota Young', 'Logan Coleman', 'Parker Wright']
-
 
 # Define start and end dates
 start_date = datetime.date(2020, 1, 1)
@@ -47,3 +45,4 @@ with open('company_news.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Company Name', 'Article Name', 'Date', 'Publisher', 'Writer'])
     writer.writerows(data)
+    
